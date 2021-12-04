@@ -2,10 +2,10 @@
 """
 Created on Wed Dec  1 09:22:16 2021
 
-@author: pphilipiak
+@author: Spongetheone
 """
 
-with open(r'''C:\Users\pphilipiak\Documents\Advent of Code\Day 1\day1.txt''') as f:
+with open(r'''day1.txt''') as f:
     lines = f.readlines()
 
 numbers=[]

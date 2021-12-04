@@ -2,16 +2,16 @@
 """
 Created on Fri Dec  3 15:05:11 2021
 
-@author: pphilipiak
+@author: Spongetheone
 """
 
-with open(r'''C:\Users\pphilipiak\Documents\Advent of Code\Day 3\day3.txt''') as f:
+with open(r'''day3.txt''') as f:
     lines = f.readlines()
 
-with open(r'''C:\Users\pphilipiak\Documents\Advent of Code\Day 3\day3.txt''') as f:
+with open(r'''day3.txt''') as f:
     highlist = f.readlines()
 
-with open(r'''C:\Users\pphilipiak\Documents\Advent of Code\Day 3\day3.txt''') as f:
+with open(r'''day3.txt''') as f:
     lowlist = f.readlines()
 
 
@@ -81,5 +81,5 @@ for i in range(len(lowlist[0])-1):
         low=int(lowlist[0],2)
         break
 
-print(high*low)
+print("Part 2:", high*low)
 

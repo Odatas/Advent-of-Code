@@ -6,7 +6,7 @@ Created on Thu Dec  2 08:58:46 2021
 """
 
 
-with open(r'''C:\Users\pphilipiak\Documents\Advent of Code\Day 2\day2.txt''') as f:
+with open(r'''day2.txt''') as f:
     lines = f.readlines()
 
 horizontal =0
