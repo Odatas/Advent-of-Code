@@ -2,7 +2,7 @@
 """
 Created on Sat Dec  4 07:43:22 2021
 
-@author: Paddy
+@author: Odatas
 """
 
 import numpy
