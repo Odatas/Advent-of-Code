@@ -33,35 +33,39 @@ def createDict(entry):
     wireDict[4] = [x for x in entry if len(x) == 4 ][0]
     #8
     wireDict[8] = [x for x in entry if len(x) == 7 ][0]
+    #9,6 and 0 all have 6 bits.
     sixerList = [x for x in entry if len(x) == 6]
     for i in sixerList:
         if containsAll(i,wireDict[4]):
-            #9
+            #between 9,6 and zero, 9 is the only one that contains all bits of 4
             wireDict[9]=i
     sixerList.remove(wireDict[9])
     for i in sixerList:
         if containsAll(i,wireDict[1]):
-            #0
+            #between 6 and 0, 0 contains all bits from 1
             wireDict[0] = i
     sixerList.remove(wireDict[0])
-    #6
+    #6 is whats left in the list
     wireDict[6] = sixerList[0]
+    #3,5 and 2 all have 5 bits
     fiverList = [x for x in entry if len(x) == 5]
     for i in fiverList:
         if containsAll(i,wireDict[1]):
-            #3
+            #between 3,5 and 2  3 is the only one that dcontains all bits from 1
             wireDict[3] = i
             break
     fiverList.remove(wireDict[3])
+    #get the one bit that is in 1 but not in 6
     lastQlue = [x for x in wireDict[1] if x in wireDict[6]][0]
     for i in fiverList:
         if lastQlue in i:
+            #5 has the one bit that is in 1 but not in 6
             wireDict[5] = i
     fiverList.remove(wireDict[5])
+    #2 is whats left.
     wireDict[2] = fiverList[0]
 
     return wireDict
-    #return  {v: k for k, v in wireDict.items()}
 
 
 
