@@ -15,7 +15,7 @@ with open("day16.txt","r") as f:
     lines = f.readlines()
 
 #hexadecimal = lines[0].strip()
-hexadecimal = "26008C8E2DA0191C5B400"
+hexadecimal = "9C0141080250320F1802104A08"
 end_length = len(hexadecimal) * 4
 hex_as_int = int(hexadecimal, 16)
 hex_as_binary = bin(hex_as_int)
@@ -68,15 +68,17 @@ def bytesToNumber(subpackages=-1,lengthlimit = -1):
     #loop that runs through every step as long as there is enough space for headder
     #other counditions are all packages (typeLength=1) found and length of number is reached (typeLength=0)
     #subpackages is for typeLength = 1 and lengthlimit for typelength = 0
-    while bytePointer+6 < padded_binary_original_size and subpackages != 0 and lengthlimit !=0 :
+    while bytePointer+10 < padded_binary_original_size and subpackages != 0 and lengthlimit !=0 :
+        
         #print(tree+"Parsed",padded_binary_original[bytePointer:])
+        #print(tree+"lenghtlimit:",lengthlimit,"subpackages:",subpackages)
         version = int(padded_binary_original[bytePointer:bytePointer+3],2)
         bytePointer+=3
         lengthlimit-=3
         typeID = int(padded_binary_original[bytePointer:bytePointer+3],2)
         bytePointer +=3
         lengthlimit-=3
-        print(tree)
+        #print(tree)
         #print(tree+"Version:",version,"Type ID:",typeID,)
         #variable for part 1
         global versionSum
@@ -104,6 +106,7 @@ def bytesToNumber(subpackages=-1,lengthlimit = -1):
                 print(tree)
                 return numbersArray
         else:
+            print(tree+"Operator: " + str(typeID))
             #if typeID is not 4 get typeLength
             typeLength = padded_binary_original[bytePointer]
             bytePointer+=1
@@ -115,13 +118,18 @@ def bytesToNumber(subpackages=-1,lengthlimit = -1):
                 number = int(padded_binary_original[bytePointer:bytePointer+breaker],2)
                 bytePointer += breaker
                 lengthlimit -= breaker
+                
                 #print(tree+"intlenght",number)
-                numbersArray = bytesToNumber(lengthlimit=number)
+                tempPointer = bytePointer
+                test = bytesToNumber(subpackages=subpackages,lengthlimit=number)
+                lengthlimit -= (bytePointer-tempPointer)
+                lengthlimit-=number
+                #print(tree+"lenghtlimit0",lengthlimit)
                 #print(tree+"Back from length",numbersArray)
                 subpackages-=1
                 #apply operation to numbers that got back
-                test.append(applyId(numbersArray, typeID))
-                #print(tree+str(test))
+                numbersArray.append(applyId(test, typeID))
+                #print(tree+"test0"+str(test))
                 #return test
             else:
                 #same but difference for typeLenght = 1
@@ -129,20 +137,23 @@ def bytesToNumber(subpackages=-1,lengthlimit = -1):
                 number = int(padded_binary_original[bytePointer:bytePointer+breaker],2)
                 bytePointer +=breaker
                 lengthlimit -= breaker
+                tempPointer = bytePointer
                 #print(tree+"packagelength",number)
-                numbersArray = bytesToNumber(subpackages=number)
-               # print(tree+"Back from package",numbersArray)
+                test = bytesToNumber(subpackages=number,lengthlimit=lengthlimit)
+                lengthlimit -= (bytePointer-tempPointer)
+                #print(tree+"lenghtlimit1",lengthlimit)
+                #print(tree+"Back from package",numbersArray)
                 subpackages-=1
-                test.append(applyId(numbersArray, typeID))
-                #print(tree+str(test))
+                numbersArray.append(applyId(test, typeID))
+                #print(tree+"test1"+str(test),lengthlimit)
                 #test
-    tree = tree[1:]
-    print(tree)
+    
+    
     #if there are numbers in test give back the numbers you calculated.
-    if len(test) > 0:
-        return test
-    else:
-        return numbersArray
+    print(tree+ "Return " + "test",test,"numbersarray",numbersArray)
+    print(tree)
+    tree = tree[1:]
+    return numbersArray
 part2=bytesToNumber(-1)
 print("-------------------------------------\n\nPart:1",versionSum)
 print("Part2:",part2)
