@@ -7,8 +7,9 @@ Created on Wed Dec 15 09:37:05 2021
 import numpy as np
 import networkx as nx
 import copy
+import matplotlib.pyplot as plt
 
-with open("day15.txt","r") as f:
+with open("day15example.txt","r") as f:
     lines = f.readlines()
 matrixInput=[]
 for i in lines:
@@ -53,5 +54,14 @@ for iy,ix in np.ndindex(A.shape):
 
 
 print(nx.dijkstra_path_length(G,"0,0",str(A.shape[0]-1)+ "," + str(A.shape[1]-1)))
-
-#nx.draw(G,with_labels = True)
+pathNodeList = nx.dijkstra_path(G,"0,0",str(A.shape[0]-1)+ "," + str(A.shape[1]-1))
+p = nx.shortest_path(G,"0,0",str(A.shape[0]-1)+ "," + str(A.shape[1]-1))
+for e in G.edges():
+    G[e[0]][e[1]]['color'] = 'black'
+for i in range(len(p)-1):
+    G[p[i]][p[i+1]]['color'] = 'red'
+edge_color_list = [ G[e[0]][e[1]]['color'] for e in G.edges() ]
+nx.draw(G, node_size=3,arrowsize=1,width=0.3,with_labels=True,font_size=2,edge_color = edge_color_list)
+plt.savefig('plot4.png', dpi=1000, bbox_inches='tight')
+plt.show()
+print("Done")
