@@ -23,7 +23,8 @@ for i in puzzel_input:
     calorie_list.append(calorieCounter(i))
 
 calorie_list.sort()
-print(sum(calorie_list[-3:]))        
+print("Part 1",calorie_list[-1])
+print("Part 2",sum(calorie_list[-3:]))        
         
     
     
