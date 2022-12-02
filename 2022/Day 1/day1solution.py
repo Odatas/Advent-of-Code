@@ -5,7 +5,7 @@ Created on Fri Dec  2 15:41:41 2022
 @author: patri
 """
 
-with open(r'''C:\Users\patri\Documents\GitHub\Advent-of-Code\2022\Day 1\input.txt''',"r") as f:
+with open(r'''input.txt''',"r") as f:
     puzzel_input = f.read()
     
 puzzel_input = puzzel_input.split("\n\n")
