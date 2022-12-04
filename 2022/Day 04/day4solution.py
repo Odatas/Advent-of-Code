@@ -10,21 +10,21 @@ with open("input.txt", "r") as f:
     puzzel_input = f.readlines()
 
 
-containment = 0
+partial_containment = 0
 full_containment = 0
 for i in puzzel_input:
     numbers = re.findall(r'\d+', i)
     numbers = [int(x) for x in numbers]
     
     if numbers[0] <= numbers[2] and numbers[1] >= numbers[3]:
-        containment += 1
+        full_containment += 1
     elif numbers[2] <= numbers[0] and numbers[3] >= numbers[1]:
-        containment += 1
+        full_containment += 1
         
     if numbers[0] <= numbers[2] and numbers[1] >= numbers[2]:
-        full_containment += 1
+        partial_containment += 1
     elif numbers[2] <= numbers[0] and numbers[3] >= numbers[0]:
-        full_containment += 1
+        partial_containment += 1
 
-print("Part 1:",containment)
-print("Part 2:",full_containment)
+print("Part 1:",full_containment)
+print("Part 2:",partial_containment)
