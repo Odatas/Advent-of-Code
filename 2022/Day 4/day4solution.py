@@ -23,10 +23,8 @@ for i in puzzel_input:
         
     if numbers[0] <= numbers[2] and numbers[1] >= numbers[2]:
         full_containment += 1
-        print("First",i)
     elif numbers[2] <= numbers[0] and numbers[3] >= numbers[0]:
         full_containment += 1
-        print("Second",i)
 
 print("Part 1:",containment)
 print("Part 2:",full_containment)
