@@ -15,6 +15,7 @@ def Char_Value(character):
     elif character.isupper():
         return ord(character)-38
 
+
 sum_of_double_items = 0
 for i in puzzel_input:
     break_up_point = int(len(i)/2)
@@ -31,4 +32,4 @@ for i in range(0, len(puzzel_input)-2, 3):
     set3 = set(puzzel_input[i+2].strip())
     sum_of_badges += Char_Value((set1 & set2 & set3).pop())
 
-print("Part 2:",sum_of_badges)
+print("Part 2:", sum_of_badges)
