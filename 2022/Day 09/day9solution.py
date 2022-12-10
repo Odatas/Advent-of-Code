@@ -27,7 +27,7 @@ Save_Coordinates(0, 0)
 dont_move_list = [(0, 0), (0, 1), (0, -1), (1, 0), (-1, 0),
                   (1, 1), (-1, -1), (-1, 1), (1, -1)]
 
-rope_length = 900
+rope_length = 9
 rope = []
 rope.append(head)
 for i in range(rope_length):
