@@ -34,6 +34,7 @@ for game in puzzelinput:
     blue_numbers_int = [int(num) for num in blue_numbers]
     red_numbers_int = [int(num) for num in red_numbers]
 
+    # Calculate power of cubes
     fewest_green = max(green_numbers_int)
     fewest_red = max(red_numbers_int)
     fewest_blue = max(blue_numbers_int)
