@@ -6,6 +6,7 @@ Created on Mon Dec  4 15:48:35 2023
 """
 
 import re
+import time
 
 
 with open("input.txt", mode="r") as file:
@@ -15,7 +16,7 @@ cardcount = len(puzzel_input)
 scratchcard_points = []
 carddeck_winnings_per_card = []
 
-
+start_time = time.time()
 for card in puzzel_input:
 
     # Pattern for numbers between ":" and "|"
@@ -36,8 +37,13 @@ for card in puzzel_input:
         scratchcard_points.append(2 ** winner)
     else:
         carddeck_winnings_per_card.append(0)
+end_time = time.time()
+elapsed_time = end_time - start_time
+part1result = sum(scratchcard_points)
+print(f"Part 1: {part1result}, Runtime: {elapsed_time * 1000:.2f} ms")
 
-print("Part 1: ", sum(scratchcard_points))
+
+start_time = time.time()
 
 carddeck_total_counts = []
 carddeck_current_round_counter = []
@@ -65,5 +71,7 @@ while True:
     carddeck_next_round_counter = []
     for i in range(cardcount):
         carddeck_next_round_counter.append(0)
-
-print("Part 2: ", sum(carddeck_total_counts))
+part2result = sum(carddeck_total_counts)
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(f"Part 2: {part2result}, Runtime: {elapsed_time * 1000:.2f} ms")
