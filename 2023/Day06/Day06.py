@@ -23,16 +23,16 @@ def ways_to_win(racetime, record):
     return winnings
 
 
-start_time = time.time()
+start_time = time.perf_counter()
 part1result = ways_to_win(46, 347) * ways_to_win(82, 1522) * ways_to_win(84, 1406) * ways_to_win(79, 1471)
-end_time = time.time()
+end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 print(f"Part 1: {part1result}, Runtime: {elapsed_time * 1000:.2f} ms")
 
 
-start_time = time.time()
+start_time = time.perf_counter()
 part2result = ways_to_win(46828479, 347152214061471)
-end_time = time.time()
+end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
 print(f"Part 2: {part2result}, Runtime: {elapsed_time * 1000:.2f} ms")
