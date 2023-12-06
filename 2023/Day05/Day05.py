@@ -154,11 +154,13 @@ def calculate_destination_2(seeds):
 
 part2 = calculate_destination_2(part_2_seeds)
 minrange = [x[0] for x in part2]
-print(min(minrange))
+part2_result = min(minrange)
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(f"Part 1: {part1result}, Runtime: {elapsed_time * 1000:.2f} ms")
 
 # part2 = [int(x) for x in part1]
 # part1result = min(part1)
-end_time = time.time()
-elapsed_time = end_time - start_time
+
 
 # print(map_value_part2(list_of_maps, ranges))
