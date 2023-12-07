@@ -96,12 +96,12 @@ def calculate_destination(seeds):
     return seeds
 
 
-with open("input.txt", mode="r") as file:
+with open("input_limp.txt", mode="r") as file:
     puzzel_input = file.readlines()
     puzzel_input = [x.strip() for x in puzzel_input]
 
 
-start_time = time.time()
+start_time = time.perf_counter()
 
 # get seeds
 start_seeds = puzzel_input.pop(0).split(" ")[1:]
@@ -114,7 +114,7 @@ part1 = calculate_destination(start_seeds)
 
 part1 = [int(x) for x in part1]
 part1result = min(part1)
-end_time = time.time()
+end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
 print(f"Part 1: {part1result}, Runtime: {elapsed_time * 1000:.2f} ms")
@@ -140,6 +140,8 @@ def calculate_destination_2(seeds):
 
         if not entry:
             new_values = map_value_part2(number_map, seeds)
+
+            limpvalues = [[x[0], x[0]+x[1]] for x in new_values]
             seeds = new_values
             new_values = []
             number_map = []
@@ -152,12 +154,13 @@ def calculate_destination_2(seeds):
     return seeds
 
 
+start_time = time.perf_counter()
 part2 = calculate_destination_2(part_2_seeds)
 minrange = [x[0] for x in part2]
 part2_result = min(minrange)
-end_time = time.time()
+end_time = time.perf_counter()
 elapsed_time = end_time - start_time
-print(f"Part 1: {part1result}, Runtime: {elapsed_time * 1000:.2f} ms")
+print(f"Part 2: {part2_result}, Runtime: {elapsed_time * 1000:.2f} ms")
 
 # part2 = [int(x) for x in part1]
 # part1result = min(part1)
