@@ -1,4 +1,6 @@
 
+import time
+
 
 class CharCounter:
     def __init__(self):
@@ -84,31 +86,8 @@ def sort_card_hands(list_of_cards):
     return sorted_list
 
 
-card_values = {
-    'A': 14,
-    'K': 13,
-    'Q': 12,
-    'J': 11,
-    'T': 10,
-    '9': 9,
-    '8': 8,
-    '7': 7,
-    '6': 6,
-    '5': 5,
-    '4': 4,
-    '3': 3,
-    '2': 2
-}
-
-
-with open("example.txt", mode="r") as file:
-    puzzel_input = file.readlines()
-    puzzel_input = [x.strip().split(" ") for x in puzzel_input]
-
-
 def do_it_all(puzzel, Joker_rule=False):
     if len(puzzel) == 1:
-        print(puzzel[0])
         return 0, puzzel[0]
     Five_of_a_kind = []
     Four_of_a_kind = []
@@ -119,8 +98,6 @@ def do_it_all(puzzel, Joker_rule=False):
     High_card = []
 
     for entry in puzzel:
-        if Joker_rule:
-            print("Start with", entry)
         line = entry
 
         if Joker_rule and "J" in line[0]:
@@ -131,33 +108,31 @@ def do_it_all(puzzel, Joker_rule=False):
         for card in hand:
             counter.add_letter(card)
         hand_counted = counter.get_counts()
-        if Joker_rule:
-            print("Got now", entry)
         # a=5
         if len(hand_counted) == 1:
-            Five_of_a_kind.append(line)
+            Five_of_a_kind.append(entry)
             # print("Five of a kind")
         # a=4, b=1| a=3,b=2
         elif len(hand_counted) == 2:
             if hand_counted[0][1] == 4:
-                Four_of_a_kind.append(line)
+                Four_of_a_kind.append(entry)
                 # print("Four of a kind")
             else:
-                Full_house.append(line)
+                Full_house.append(entry)
                 # print("Full House")
         # a=3,b=1,c=1|a=2,b=2,c=1
         elif len(hand_counted) == 3:
             if hand_counted[0][1] == 3:
-                Three_of_a_kind.append(line)
+                Three_of_a_kind.append(entry)
                 # print("three of a kind")
             else:
-                Two_pair.append(line)
+                Two_pair.append(entry)
                 # print("Two pairs")
         elif len(hand_counted) == 4:
-            One_pair.append(line)
+            One_pair.append(entry)
             # print("One Pair")
         else:
-            High_card.append(line)
+            High_card.append(entry)
             # print("High Card")
 
     Five_of_a_kind = sort_card_hands(Five_of_a_kind)
@@ -182,9 +157,38 @@ def do_it_all(puzzel, Joker_rule=False):
     return sum, masterlist[0]
 
 
-print("Part 1: ", do_it_all(puzzel_input))
+card_values = {
+    'A': 14,
+    'K': 13,
+    'Q': 12,
+    'J': 11,
+    'T': 10,
+    '9': 9,
+    '8': 8,
+    '7': 7,
+    '6': 6,
+    '5': 5,
+    '4': 4,
+    '3': 3,
+    '2': 2
+}
+
+
+with open("input.txt", mode="r") as file:
+    puzzel_input = file.readlines()
+    puzzel_input = [x.strip().split(" ") for x in puzzel_input]
+
+start_time = time.perf_counter()
+part1result = do_it_all(puzzel_input)
+end_time = time.perf_counter()
+elapsed_time = end_time - start_time
+print(f"Part 1: {part1result}, Runtime: {elapsed_time * 1000:.2f} ms")
 
 
 card_values["J"] = 1
 
-print("Part 2: ", do_it_all(puzzel_input, Joker_rule=True))
+start_time = time.perf_counter()
+part2result = do_it_all(puzzel_input, Joker_rule=True)
+end_time = time.perf_counter()
+elapsed_time = end_time - start_time
+print(f"Part 2: {part2result}, Runtime: {elapsed_time * 1000:.2f} ms")
