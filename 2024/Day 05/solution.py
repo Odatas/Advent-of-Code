@@ -43,7 +43,7 @@ for page in page_numbers:
         for item in after:
             if item in rule[0]:
                 failure = True
-
+# Part 2 Idea: Sort each number based on its dict.
     if failure:
         ordered = []
         ordered.append(numbers[0])
