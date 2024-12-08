@@ -2,7 +2,6 @@ import datetime
 from advent_of_code_utility import read_file_to_list
 import itertools
 
-
 def check_calculation(task, with_concatenation = False):
     solution = task[0]
     numbers = task[1]
