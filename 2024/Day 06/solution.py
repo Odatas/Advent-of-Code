@@ -1,3 +1,5 @@
+import datetime
+
 from advent_of_code_utility import read_file_to_list
 
 def turn_90_degrees(current_direction):
@@ -56,6 +58,7 @@ def find_route(field, guard):
             #print("Left Map")
             return field, False
 
+start = datetime.datetime.now()
 input_list = read_file_to_list("input.txt")
 
 field = []
@@ -85,9 +88,7 @@ print(f"Part 1: {field_count}")
 #Part 2 even more Brute Force. But be smart about it. Obstructions only need to be placed where the guard will walk.
 
 loop_counter = 0
-print(len(possible_obstructions))
 for obstruction in possible_obstructions:
-    print(f"Obsturction: {obstruction}")
     field = []
     for row in input_list:
         field.append(list(row))
@@ -108,3 +109,6 @@ for obstruction in possible_obstructions:
     #print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 print(f"Part 2: {loop_counter}")
+
+runtime = datetime.datetime.now()-start
+print(runtime)
